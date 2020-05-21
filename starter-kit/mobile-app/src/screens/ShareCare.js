@@ -114,7 +114,9 @@ const Home = () => {
   </TouchableOpacity>
 
 
-  <TouchableOpacity style={styles.buttonStyle}>
+
+  <TouchableOpacity style={styles.buttonStyle}
+          onPress={() => navigation.navigate('Doctor Connect')}>
   <Text style={styles.textStyle}>Doctor Connect</Text>
   </TouchableOpacity>
   

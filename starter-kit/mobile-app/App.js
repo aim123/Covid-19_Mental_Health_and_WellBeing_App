@@ -1,11 +1,11 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import { Button } from 'react-native';
+import {Button} from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import LoadingScreen from './src/screens/loading';
 //import Home from './src/screens/home';
@@ -18,21 +18,33 @@ import AddResource from './src/screens/resource-add';
 import EditResource from './src/screens/resource-edit';
 import MyResources from './src/screens/resources-my';
 //import MyResources from './src/screens/ShareCare-resources-my';
-import { StyleSheet, View, Image, Text, TouchableOpacity, Linking } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 //import ShareCare_home from '.src/screens/ShareCare-resources-my';
 import Map from './src/screens/map';
-import shareCollect from './src/screens/shareCollect'
-import shareForm from './src/screens/shareForm'
-import shareFormSubmit from './src/screens/shareFormSubmit'
-import collectForm from './src/screens/collectForm'
-import collectFormSubmit from './src/screens/collectFormSubmit'
+import shareCollect from './src/screens/shareCollect';
+import shareForm from './src/screens/shareForm';
+import shareFormSubmit from './src/screens/shareFormSubmit';
+import collectForm from './src/screens/collectForm';
+import collectFormSubmit from './src/screens/collectFormSubmit';
+import doctorConnect from './src/screens/doctorConnect';
+import selfForm from './src/screens/selfForm';
+import selfSubmitForm from './src/screens/selfSubmitForm';
 
-import { HomeIcon, DonateIcon, SearchIcon } from './src/images/svg-icons';
+import {HomeIcon, DonateIcon, SearchIcon} from './src/images/svg-icons';
+import selfFinalSubmit from './src/screens/selfFinalSubmit';
+import relativeForm from './src/screens/relativeForm_v1';
+import relativeSubmitForm from './src/screens/relativeSubmitForm_v1';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
 
 const styles = StyleSheet.create({
   center: {
@@ -40,25 +52,25 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
   },
   scroll: {
     paddingLeft: 20,
     paddingRight: 20,
     paddingBottom: 25,
-    paddingTop: 75
+    paddingTop: 75,
   },
   image: {
     alignSelf: 'flex-start',
     height: '20%',
-    width:'50%',
-    resizeMode: 'contain'
+    width: '50%',
+    resizeMode: 'contain',
   },
   title: {
     fontFamily: 'IBMPlexSans-Medium',
     fontSize: 36,
     color: '#323232',
-    paddingBottom: 15
+    paddingBottom: 15,
   },
   subtitle: {
     fontFamily: 'IBMPlexSans-Light',
@@ -67,19 +79,19 @@ const styles = StyleSheet.create({
     textDecorationColor: '#D0E2FF',
     textDecorationLine: 'underline',
     paddingBottom: 5,
-    paddingTop: 20
+    paddingTop: 20,
   },
   content: {
     fontFamily: 'IBMPlexSans-Light',
     color: '#323232',
     marginTop: 10,
     marginBottom: 10,
-    fontSize: 16
+    fontSize: 16,
   },
   buttonGroup: {
     flex: 1,
     paddingTop: 15,
-    width: 175
+    width: 175,
   },
   button: {
     backgroundColor: '#1062FE',
@@ -88,31 +100,28 @@ const styles = StyleSheet.create({
     fontSize: 16,
     overflow: 'hidden',
     padding: 12,
-    textAlign:'center',
-    marginTop: 15
-  }
+    textAlign: 'center',
+    marginTop: 15,
+  },
 });
 
-const ResourcesStackOptions = ({ navigation }) => {
-  return ({
+const ResourcesStackOptions = ({navigation}) => {
+  return {
     headerRight: () => (
-      <Button
-        onPress={() => navigation.navigate('Chat')}
-        title='Chat '
-      />
-    )
-  });
+      <Button onPress={() => navigation.navigate('Chat')} title="Chat " />
+    ),
+  };
 };
 
-const DonationsStackOptions = ({ navigation }) => {
-  return ({
+const DonationsStackOptions = ({navigation}) => {
+  return {
     headerRight: () => (
       <Button
         onPress={() => navigation.navigate('Add Donation')}
-        title='Add '
+        title="Add "
       />
-    )
-  });
+    ),
+  };
 };
 
 const tabBarOptions = {
@@ -121,23 +130,23 @@ const tabBarOptions = {
   inactiveTintColor: '#000',
   style: {
     backgroundColor: '#F1F0EE',
-    paddingTop: 5
-  }
+    paddingTop: 5,
+  },
 };
 
 const TabLayout = () => (
   <Tab.Navigator
     style={{paddingTop: 50}}
-    initialRouteName='Home'
-    tabBarOptions={tabBarOptions} >
+    initialRouteName="Home"
+    tabBarOptions={tabBarOptions}>
     <Tab.Screen
-      name='Home'
+      name="Home"
       component={HomeStack}
       options={{
-        tabBarIcon: ({color}) => (<HomeIcon fill={color}/>)
+        tabBarIcon: ({color}) => <HomeIcon fill={color} />,
       }}
     />
-  {/*  <Tab.Screen
+    {/*  <Tab.Screen
       name='ShareCare'
       component={DonateStackLayout}
       options={{
@@ -147,52 +156,58 @@ const TabLayout = () => (
     */}
 
     <Tab.Screen
-      name='Search'
+      name="Search"
       component={SearchStackLayout}
       options={{
-        tabBarIcon: ({color}) => (<SearchIcon fill={color} />)
+        tabBarIcon: ({color}) => <SearchIcon fill={color} />,
       }}
     />
   </Tab.Navigator>
 );
 
 const HomeStack = () => (
-
-  
   <Stack.Navigator>
-  
-	<Stack.Screen name='Home' component={Home}  />
-    <Stack.Screen name='Share & Collect' component={shareCollect} />
-    <Stack.Screen name='Share Form' component={shareForm} />
-    <Stack.Screen name='Share Form Submition' component={shareFormSubmit} />
-    <Stack.Screen name='Collect Form' component={collectForm} />
-    <Stack.Screen name='Collect Form Submition' component={collectFormSubmit} />
+    <Stack.Screen name="Home" component={Home} />
+    <Stack.Screen name="Doctor Connect" component={doctorConnect} />
+    <Stack.Screen name="Share & Collect" component={shareCollect} />
+    <Stack.Screen name="Share Form" component={shareForm} />
+    <Stack.Screen name="Share Form Submition" component={shareFormSubmit} />
+    <Stack.Screen name="Collect Form" component={collectForm} />
+    <Stack.Screen name="Collect Form Submition" component={collectFormSubmit} />
+    <Stack.Screen name="Self Form" component={selfForm} />
+    <Stack.Screen name="Self Submit Form" component={selfSubmitForm} />
+    <Stack.Screen name="Self Final Submit" component={selfFinalSubmit} />
+    <Stack.Screen name="Relative Form" component={relativeForm} />
+    <Stack.Screen name="Relative Submit Form" component={relativeSubmitForm} />
   </Stack.Navigator>
 );
 
 const DonateStackLayout = () => (
-
-  
   <Stack.Navigator>
-  
-	<Stack.Screen name='My Donations' component={MyResources} options={DonationsStackOptions} />
-    <Stack.Screen name='Add Donation' component={AddResource} />
-    <Stack.Screen name='Edit Donation' component={EditResource} />
-
+    <Stack.Screen
+      name="My Donations"
+      component={MyResources}
+      options={DonationsStackOptions}
+    />
+    <Stack.Screen name="Add Donation" component={AddResource} />
+    <Stack.Screen name="Edit Donation" component={EditResource} />
   </Stack.Navigator>
 );
 
 const SearchStackLayout = () => (
   <Stack.Navigator>
-    <Stack.Screen name='Search Resources' component={SearchResources} options={ResourcesStackOptions} />
-    <Stack.Screen name='Chat' component={Chat} />
-    <Stack.Screen name='Map' component={Map} />
+    <Stack.Screen
+      name="Search Resources"
+      component={SearchResources}
+      options={ResourcesStackOptions}
+    />
+    <Stack.Screen name="Chat" component={Chat} />
+    <Stack.Screen name="Map" component={Map} />
   </Stack.Navigator>
 );
 
 const App = () => {
   const [isLoading, setIsLoading] = React.useState(true);
-
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -201,11 +216,11 @@ const App = () => {
   }, []);
 
   if (isLoading) {
-    return (<LoadingScreen />);
+    return <LoadingScreen />;
   } else {
     return (
       <NavigationContainer>
-        <TabLayout/>
+        <TabLayout />
       </NavigationContainer>
     );
   }
