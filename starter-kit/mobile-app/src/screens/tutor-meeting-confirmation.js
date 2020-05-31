@@ -60,21 +60,23 @@ const styles = StyleSheet.create({
     padding: 12,
     textAlign:'center',
     marginTop: 15
+  },
+  confirmationText:{
+    fontWeight: 'bold',
+    fontFamily: 'IBMPlexSans-Light',
+    fontSize: 16
+
   }
 });
 
 
-function Home({ navigation }) {
+function TutorMeetingConfirmation({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Skill connect"
-        onPress={() => navigation.navigate('Skill-Connect-Home')}
-      />
+      <Text style={styles.confirmationText}>We will shedule a meeting with interested Tutor. Thanks!</Text>
     </View>
   );
 }
 
 
-export default Home;
+export default TutorMeetingConfirmation;
